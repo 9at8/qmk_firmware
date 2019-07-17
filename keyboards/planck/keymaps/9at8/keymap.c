@@ -21,25 +21,23 @@ extern keymap_config_t keymap_config;
 
 enum planck_layers {
   _QWERTY,
-  _COLEMAK,
-  _DVORAK,
-  _LOWER,
-  _RAISE,
-  _PLOVER,
+
+  _NAV,
+  _NUM,
+  _SYM,
   _ADJUST
 };
 
 enum planck_keycodes {
   QWERTY = SAFE_RANGE,
-  COLEMAK,
-  DVORAK,
-  PLOVER,
   BACKLIT,
   EXT_PLV
 };
 
-#define LOWER MO(_LOWER)
-#define RAISE MO(_RAISE)
+
+#define NAV MO(_NAV)
+#define NUM MO(_NUM)
+#define SYM MO(_SYM)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -51,14 +49,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Brite| Ctrl | Alt  | GUI  |Lower |    Space    |Raise | Left | Down |  Up  |Right |
+ * |      | Ctrl | Alt  | GUI  |  NAV |    Space    |  NUM | Ctrl | Alt  | GUI  |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    BACKLIT, KC_LCTL, KC_LALT, KC_LGUI, LOWER,   KC_SPC,  KC_SPC,  RAISE,   KC_LEFT, KC_DOWN, KC_UP,   KC_RGHT
+    XXXXXXX, KC_LCTL, KC_LALT, KC_LGUI, NAV,     KC_SPC,  KC_SPC,  NUM,     KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX
 ),
 
 /* Colemak
