@@ -104,7 +104,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_NUM] = LAYOUT_planck_grid(
     KC_GRV,  KC_TILD, XXXXXXX, XXXXXXX, XXXXXXX, KC_LPRN, KC_RPRN, KC_1,    KC_2,    KC_3,    KC_EQL,  KC_INS,
     _______, XXXXXXX, XXXXXXX, KC_DEL,  XXXXXXX, KC_LCBR, KC_RCBR, KC_4,    KC_5,    KC_6,    KC_MINS, KC_BSLS,
-    _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE, KC_LBCR, KC_RBCR, KC_7,    KC_8,    KC_9,    KC_ASTR, KC_PSCR,
+    _______, KC_UNDO, KC_CUT,  KC_COPY, KC_PSTE, KC_LBRC, KC_RBRC, KC_7,    KC_8,    KC_9,    KC_ASTR, KC_PSCR,
     _______, _______, _______, _______, _______, _______, _______, _______, KC_0,    XXXXXXX, KC_SLSH, XXXXXXX
 ),
 
@@ -124,7 +124,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, XXXXXXX, KC_BRID, KC_VOLD, KC_BRIU, XXXXXXX, XXXXXXX, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, _______,
     KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,   KC_F6,   KC_F7,   KC_F8,   KC_F9,   KC_F10,  KC_F11,  KC_F12,
     _______, _______, _______, _______, XXXXXXX, _______, _______, XXXXXXX, _______, _______, _______, _______
-)
+),
 
 /* Adjust (Nav + Num)
  * ,-----------------------------------------------------------------------------------.
@@ -232,31 +232,31 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case MC_NAV:
       if (record->event.pressed) {
-        layer_on(_NAV)
-        layer_on(_MC_NAV)
+        layer_on(_NAV);
+        layer_on(_MC_NAV);
       } else {
-        layer_off(_NAV)
-        layer_off(_MC_NAV)
+        layer_off(_NAV);
+        layer_off(_MC_NAV);
       }
       return false;
 
     case MC_NUM:
       if (record->event.pressed) {
-        layer_on(_NUM)
-        layer_on(_MC_NUM)
+        layer_on(_NUM);
+        layer_on(_MC_NUM);
       } else {
-        layer_off(_NUM)
-        layer_off(_MC_NUM)
+        layer_off(_NUM);
+        layer_off(_MC_NUM);
       }
       return false;
 
     case MC_FN1:
       if (record->event.pressed) {
-        layer_on(_FN1)
-        layer_on(_MC_FN1)
+        layer_on(_FN1);
+        layer_on(_MC_FN1);
       } else {
-        layer_off(_FN1)
-        layer_off(_MC_FN1)
+        layer_off(_FN1);
+        layer_off(_MC_FN1);
       }
       return false;
 
