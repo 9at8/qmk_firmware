@@ -37,3 +37,8 @@
 // Most tactile encoders have detents every 4 stages
 #define ENCODER_RESOLUTION 4
 
+// Mouse keys
+#define MOUSEKEY_DELAY 200
+#define MOUSEKEY_INTERVAL 16
+#define MOUSEKEY_TIME_TO_MAX 300
+#define MOUSEKEY_WHEEL_TIME_TO_MAX 100
