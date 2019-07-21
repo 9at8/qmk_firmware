@@ -62,14 +62,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * | Shift|   Z  |   X  |   C  |   V  |   B  |   N  |   M  |   ,  |   .  |   /  |Enter |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
- * | Fn 1 | Ctrl | Alt  | GUI  |  NAV |    Space    |  NUM | Ctrl | Alt  | GUI  |      |
+ * | Fn 1 | Gui  | Alt  | Ctrl |  NAV |    Space    |  NUM | Alt  | Ctrl | GUI  |      |
  * `-----------------------------------------------------------------------------------'
  */
 [_QWERTY] = LAYOUT_planck_grid(
     KC_TAB,  KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,    KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSPC,
     KC_ESC,  KC_A,    KC_S,    KC_D,    KC_F,    KC_G,    KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
     KC_LSFT, KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,    KC_N,    KC_M,    KC_COMM, KC_DOT,  KC_SLSH, KC_ENT ,
-    FN1,     KC_LCTL, KC_LALT, KC_LGUI, NAV,     KC_SPC,  KC_SPC,  NUM,     KC_RCTL, KC_RALT, KC_RGUI, XXXXXXX
+    FN1,     KC_LGUI, KC_LALT, KC_LCTL, NAV,     KC_SPC,  KC_SPC,  NUM,     KC_RALT, KC_RCTL, KC_RGUI, XXXXXXX
 ),
 
 /* Nav
@@ -85,7 +85,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  */
 [_NAV] = LAYOUT_planck_grid(
     _______, XXXXXXX, KC_WH_U, KC_MS_U, KC_WH_D, XXXXXXX, XXXXXXX, WD_L,    KC_UP,   WD_R,    XXXXXXX, _______,
-    _______, KC_WH_L, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_R, KC_PGUP, KC_LEFT, KC_DOWN, KC_PGDN, XXXXXXX, _______,
+    _______, KC_WH_L, KC_MS_L, KC_MS_D, KC_MS_R, KC_WH_R, KC_PGUP, KC_LEFT, KC_DOWN, KC_RGHT, KC_PGDN, _______,
     _______, XXXXXXX, KC_BTN1, KC_BTN3, KC_BTN2, XXXXXXX, XXXXXXX, KC_HOME, XXXXXXX, KC_END,  XXXXXXX, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______
 ),
@@ -130,7 +130,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * ,-----------------------------------------------------------------------------------.
  * |      |Reset |Debug |      |      |      |      |      |      |      |      |  Del |
  * |------+------+------+------+------+-------------+------+------+------+------+------|
- * |      |      |      |Aud on|Audoff|AGnorm|AGswap| QWTY | MAC  |      |      |      |
+ * |      |      |      |Aud on|Audoff|      |      | QWTY | MAC  |      |      |      |
  * |------+------+------+------+------+------|------+------+------+------+------+------|
  * |      |Voice-|Voice+|Mus on|Musoff|MIDIon|MIDIof|      |      |      |      |      |
  * |------+------+------+------+------+------+------+------+------+------+------+------|
@@ -138,8 +138,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  * `-----------------------------------------------------------------------------------'
  */
 [_ADJUST] = LAYOUT_planck_grid(
-    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL ,
-    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  AG_NORM, AG_SWAP, QWERTY,  MAC,      _______, _______, _______,
+    _______, RESET,   DEBUG,   RGB_TOG, RGB_MOD, RGB_HUI, RGB_HUD, RGB_SAI, RGB_SAD,  RGB_VAI, RGB_VAD, KC_DEL,
+    _______, _______, MU_MOD,  AU_ON,   AU_OFF,  XXXXXXX, XXXXXXX, QWERTY,  MAC,      _______, _______, _______,
     _______, MUV_DE,  MUV_IN,  MU_ON,   MU_OFF,  MI_ON,   MI_OFF,  TERM_ON, TERM_OFF, _______, _______, _______,
     XXXXXXX, _______, _______, _______, _______, _______, _______, _______, _______,  _______, _______, _______
 ),
@@ -159,7 +159,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
     _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______, _______,
-    MC_FN1,  _______, _______, _______, MC_NAV,  _______, _______, MC_NUM,  _______, _______, _______, _______
+    MC_FN1,  _______, _______, _______, MC_NAV,  _______, _______, MC_NUM,  KC_RGUI, KC_RALT, KC_RCTL, _______
 ),
 
 /* Nav Mac
