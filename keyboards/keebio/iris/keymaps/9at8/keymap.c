@@ -369,25 +369,19 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void encoder_update_user(uint8_t _index, bool clockwise) {
     if (IS_LAYER_ON(_RGB_HUE)) {
         // rgb hue + -
-        tap_code(
-            clockwise
-                ? RGB_HUI
-                : RGB_HUD
-        );
+        clockwise
+            ? rgblight_increase_hue_noeeprom()
+            : rgblight_decrease_hue_noeeprom();
     } else if (IS_LAYER_ON(_RGB_SAT)) {
         // rgb sat + -
-        tap_code(
-            clockwise
-                ? RGB_SAI
-                : RGB_SAD
-        );
+        clockwise
+            ? rgblight_increase_sat_noeeprom()
+            : rgblight_decrease_sat_noeeprom();
     } else if (IS_LAYER_ON(_RGB_VAL)) {
         // rgb val + -
-        tap_code(
-            clockwise
-                ? RGB_VAI
-                : RGB_VAD
-        );
+        clockwise
+            ? rgblight_increase_val_noeeprom()
+            : rgblight_decrease_val_noeeprom();
     } else if (IS_LAYER_ON(_FN)) {
         // vol + -
         tap_code(

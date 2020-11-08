@@ -21,4 +21,4 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define EE_HANDS
 
 #define ENCODER_DIRECTION_FLIP
-#define ENCODER_RESOLUTION 1
+#define ENCODER_RESOLUTION 4
