@@ -298,16 +298,8 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
-    case LW_ENT:
-        if (record->event.pressed) {
-            layer_on(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        } else {
-            layer_off(_LOWER);
-            update_tri_layer(_LOWER, _RAISE, _ADJUST);
-        }
-        return false;
 
+    // To toggle adjust, we need to first press lower, otherwise enter work
     case RAISE:
         if (record->event.pressed) {
             layer_on(_RAISE);
@@ -325,14 +317,6 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
         } else {
             layer_off(_MAC_RAISE);
             layer_off(_RAISE);
-        }
-        return false;
-
-    case ADJUST:
-        if (record->event.pressed) {
-            layer_on(_ADJUST);
-        } else {
-            layer_off(_ADJUST);
         }
         return false;
 
@@ -385,18 +369,53 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 void encoder_update_user(uint8_t _index, bool clockwise) {
     if (IS_LAYER_ON(_RGB_HUE)) {
         // rgb hue + -
+        tap_code(
+            clockwise
+                ? RGB_HUI
+                : RGB_HUD
+        );
     } else if (IS_LAYER_ON(_RGB_SAT)) {
         // rgb sat + -
+        tap_code(
+            clockwise
+                ? RGB_SAI
+                : RGB_SAD
+        );
     } else if (IS_LAYER_ON(_RGB_VAL)) {
         // rgb val + -
+        tap_code(
+            clockwise
+                ? RGB_VAI
+                : RGB_VAD
+        );
     } else if (IS_LAYER_ON(_FN)) {
         // vol + -
+        tap_code(
+            clockwise
+                ? KC_AUDIO_VOL_UP
+                : KC_AUDIO_VOL_DOWN
+        );
     } else if (IS_LAYER_ON(_LOWER)) {
         // brightness + -
+        tap_code(
+            clockwise
+                ? KC_BRIGHTNESS_UP
+                : KC_BRIGHTNESS_DOWN
+        );
     } else if (IS_LAYER_ON(_GAME)) {
         // mouse left / right
+        tap_code(
+            clockwise
+                ? KC_MS_RIGHT
+                : KC_MS_LEFT
+        );
     } else {
-        // mouse wheel up down
+        // mouse wheel up / down
+        tap_code(
+            clockwise
+                ? KC_MS_WH_DOWN
+                : KC_MS_WH_UP
+        );
     }
 }
 
