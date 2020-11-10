@@ -31,13 +31,15 @@ enum keycodes {
 
 #define MAC TG(_MAC)
 #define GAME TG(_GAME)
-#define LW_ENT LT(_LOWER, KC_ENT)
+#define LOWER MO(_LOWER)
 #define RAISE MO(_RAISE)
 #define FN MO(_FN)
 
 #define L_RGB_HU MO(_RGB_HUE)
 #define L_RGB_SA MO(_RGB_SAT)
 #define L_RGB_VA MO(_RGB_VAL)
+
+#define CTL_ENT LCTL_T(KC_ENT)
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
@@ -47,11 +49,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
      * |------+------+------+------+------+------|                                     |------+------+------+------+------+------|
      * | Tab  |   Q  |   W  |   E  |   R  |   T  |                                     |   Y  |   U  |   I  |   O  |   P  | Bspc |
      * |------+------+------+------+------+------|                                .==. |------+------+------+------+------+------|
-     * |Shift |   A  |   S  |   D  |   F  |   G  |                                '==' |   H  |   J  |   K  |   L  |   ;  |   '  |
+     * | Esc  |   A  |   S  |   D  |   F  |   G  |                                '==' |   H  |   J  |   K  |   L  |   ;  |   '  |
      * |------+------+------+------+------+------+------.                       .--||--+------+------+------+------+------+------|
-     * | Esc  |   Z  |   X  |   C  |   V  |   B  |  Fn  |                       | MsWhl|   N  |   M  |   ,  |   .  |   /  | Shift|
+     * |Shift |   Z  |   X  |   C  |   V  |   B  |  Fn  |                       | MsWhl|   N  |   M  |   ,  |   .  |   /  | Shift|
      * '------------------------+------+------+------+--'                       '--+------+------+------+------------------------'
-     *                          | Alt  | Ctrl |LW+Ent|                             | Spc  | RAI  | Gui  |
+     *                          | Alt  | LOW  |Ct+Ent|                             | Spc  | RAI  | Gui  |
      *                          '--------------------'                             '--------------------'
      */
 
@@ -61,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
         //├───────┼────────┼────────┼────────┼────────┼────────┤                           ├────────┼────────┼────────┼────────┼────────┼────────┤
             KC_TAB,  KC_Q  ,  KC_W  ,  KC_E  ,  KC_R  ,  KC_T  ,                              KC_Y  ,  KC_U  ,  KC_I  ,  KC_O  ,  KC_P  , KC_BSPC,
         //├───────┼────────┼────────┼────────┼────────┼────────┤                           ├────────┼────────┼────────┼────────┼────────┼────────┤
-           KC_LSFT,  KC_A  ,  KC_S  ,  KC_D  ,  KC_F  ,  KC_G  ,                              KC_H  ,  KC_J  ,  KC_K  ,  KC_L  , KC_SCLN, KC_QUOT,
+            KC_ESC,  KC_A  ,  KC_S  ,  KC_D  ,  KC_F  ,  KC_G  ,                              KC_H  ,  KC_J  ,  KC_K  ,  KC_L  , KC_SCLN, KC_QUOT,
         //├───────┼────────┼────────┼────────┼────────┼────────┼────────┐         ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-            KC_ESC,  KC_Z  ,  KC_X  ,  KC_C  ,  KC_V  ,  KC_B  ,   FN   ,           _______,  KC_N  ,  KC_M  , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
+           KC_LSFT,  KC_Z  ,  KC_X  ,  KC_C  ,  KC_V  ,  KC_B  ,   FN   ,           _______,  KC_N  ,  KC_M  , KC_COMM, KC_DOT , KC_SLSH, KC_RSFT,
         //└───────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘         └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
-        /*                             */ KC_LALT, KC_LCTL, LW_ENT ,                    KC_SPC , RAISE  , KC_RGUI
+        /*                             */ KC_LALT, LOWER  , CTL_ENT,                    KC_SPC , RAISE  , KC_RGUI
         //                              └────────┴────────┴────────┘                  └────────┴────────┴────────┘
     ),
 
@@ -299,7 +301,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     switch (keycode) {
 
-    // To toggle adjust, we need to first press lower, otherwise enter work
+    case LOWER:
+        if (record->event.pressed) {
+            layer_on(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        } else {
+            layer_off(_LOWER);
+            update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        }
+        return false;
+
     case RAISE:
         if (record->event.pressed) {
             layer_on(_RAISE);
@@ -355,8 +366,8 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 
     case NOR_RGB:
         if (record->event.pressed) {
-            rgblight_mode(RGBLIGHT_MODE_RAINBOW_MOOD);
-            rgblight_sethsv(0, 170, 170);
+            rgblight_mode_noeeprom(RGBLIGHT_MODE_RAINBOW_MOOD);
+            rgblight_sethsv_noeeprom(0, 170, 170);
         }
         return false;
 
