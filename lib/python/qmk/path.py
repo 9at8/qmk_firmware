@@ -15,6 +15,7 @@ def is_keyboard(keyboard_name):
     if keyboard_name:
         keyboard_path = QMK_FIRMWARE / 'keyboards' / keyboard_name
         rules_mk = keyboard_path / 'rules.mk'
+
         return rules_mk.exists()
 
 
@@ -45,7 +46,7 @@ def keymap(keyboard_name):
     """
     keyboard_folder = keyboard(keyboard_name)
 
-    for i in range(MAX_KEYBOARD_SUBFOLDERS):
+    for _ in range(MAX_KEYBOARD_SUBFOLDERS):
         if (keyboard_folder / 'keymaps').exists():
             return (keyboard_folder / 'keymaps').resolve()
 
