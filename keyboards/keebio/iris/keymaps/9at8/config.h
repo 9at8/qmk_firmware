@@ -20,5 +20,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define USE_I2C
 #define EE_HANDS
 
-#define ENCODER_DIRECTION_FLIP
-#define ENCODER_RESOLUTION 4
+// #define ENCODER_ENABLE_9at8
+
+#ifdef ENCODER_ENABLE_9at8
+    #define ENCODER_DIRECTION_FLIP
+    #define ENCODER_RESOLUTION 4
+#endif
